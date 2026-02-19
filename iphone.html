@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>iPhone UI Concept</title>
+<link rel="stylesheet" href="8-iphone.css">
+</head>
+
+<body>
+
+<div class="container">
+    <div class="iphone">
+        <div class="phone-body">
+            <div class="screen">
+                <div class="screen-content">
+
+                    <!-- Toggle Theme -->
+                    <button class="theme-toggle">🌙</button>
+
+                    <!-- Status Bar -->
+                    <div class="status-bar">
+                        <div class="time" id="time"></div>
+                        <div class="battery-info">
+                            <span>📶</span>
+                            <span>🔋 100%</span>
+                        </div>
+                    </div>
+
+                    <!-- Apps Grid -->
+                    <div class="apps-grid">
+                        <div class="app-icon">📞</div>
+                        <div class="app-icon">💬</div>
+                        <div class="app-icon">📷</div>
+                        <div class="app-icon">🖼️</div>
+                        <div class="app-icon">⚙️</div>
+                        <div class="app-icon">🧭</div>
+                        <div class="app-icon">🎵</div>
+                        <div class="app-icon">📁</div>
+                    </div>
+
+                    <!-- Dock -->
+                    <div class="dock">
+                        <div class="dock-apps">
+                            <div class="app-icon">📱</div>
+                            <div class="app-icon">✉️</div>
+                            <div class="app-icon">🌐</div>
+                            <div class="app-icon">🎮</div>
+                        </div>
+                    </div>
+
+                    <div class="home-indicator"></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+/* CLOCK */
+function updateTime() {
+    const now = new Date();
+    const hours = now.getHours().toString().padStart(2, "0");
+    const minutes = now.getMinutes().toString().padStart(2, "0");
+    document.getElementById("time").textContent = `${hours}:${minutes}`;
+}
+setInterval(updateTime, 1000);
+updateTime();
+
+/* THEME TOGGLE */
+const toggleBtn = document.querySelector(".theme-toggle");
+const screen = document.querySelector(".screen-content");
+
+toggleBtn.addEventListener("click", () => {
+    screen.classList.toggle("light-mode");
+    toggleBtn.textContent = screen.classList.contains("light-mode") ? "☀️" : "🌙";
+});
+
+/* ICON CLICK EFFECT */
+document.querySelectorAll(".app-icon").forEach(icon => {
+    icon.addEventListener("click", () => {
+        icon.style.transform = "scale(0.9)";
+        setTimeout(() => {
+            icon.style.transform = "";
+        }, 150);
+    });
+});
+</script>
+
+</body>
+</html>
